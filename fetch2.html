@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo FETCH 2</title>
+</head>
+<body>
+  <h1>Ejemplo Fetch 2</h1>
+  <p>Pulsa en cada botón para cargar en la división cada uno de los contenidos.</p>
+  <p>
+    <button onclick="cargar('contenido1.txt')">Contenido 1</button>
+    <button onclick="cargar('contenido2.txt')">Contenido 2</button>
+    <button onclick="cargar('contenido3.txt')">Contenido 3</button>
+    <button onclick="cargar('contenido4.php')">Contenido 4</button>
+    <button onclick="cargar('listado.php?ini=1&fin=10')">Listado del 1 al 10</button>
+    <button onclick="cargar('listado.php?ini=5&fin=25')">Listado del 5 al 25</button>
+  </p>
+  <p>
+    <form name="listar">
+      <p>
+        <input type="number" name="ini" placeholder="mínimo">
+        <input type="number" name="fin" placeholder="máximo">
+        <input type="submit" value="Listar">
+      </p>
+    </form>
+  </p>
+  <div id="contenido"></div>
+  <script>
+    const CONTENIDO = document.getElementById('contenido');
+
+    function cargar(url) {
+      fetch(url)
+        .then(response => response.text())
+        .then(texto => CONTENIDO.innerHTML=texto);
+      CONTENIDO.innerHTML = "<h3>Cargando...</h3>";      
+    }
+
+    document.forms.listar.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      let ini = document.listar.ini.value || 0;
+      let fin = document.listar.fin.value || 10;
+      let url = `listado.php?ini=${ini}&fin=${fin}`;
+      cargar(url);
+    });    
+  </script>
+</body>
+</html>

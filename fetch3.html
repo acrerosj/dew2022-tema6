@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo 3 Fetch</title>
+</head>
+<body>
+  <h1>Ejemplo 3 Fetch JSON</h1>
+  <p>Cargar un json</p>
+  <p>
+    <button onclick="cargarDatos()">Cargar datos</button>
+    <ul id="cesta"></ul>
+  </p>
+  <script>
+    const CESTA = document.getElementById('cesta');
+
+    function cargarDatos() {
+      fetch('frutas.json')
+        .then(response => response.json())
+        .then(frutas => {
+          console.log(frutas);
+          frutas.forEach(fruta => {
+            console.log(fruta);
+            let li = document.createElement('li');
+            li.textContent = fruta;
+            CESTA.append(li);
+          });
+        });
+    }
+  </script>
+</body>
+</html>
