@@ -18,7 +18,6 @@ function loadUsers() {
 
       cellName.addEventListener('click', ()=>detalleUsuario(user));
     });
-
   });
 }
 
@@ -49,7 +48,7 @@ function detalleUsuario(user) {
         div.append(encabezado);
         DIVISION_ALBUMES.append(div);
 
-        encabezado.addEventListener('click', (e) => cargarFotosAlbum(album.id, div))
+        encabezado.addEventListener('click', () => cargarFotosAlbum(album.id, div))
       });
     });
   DIVISION_ALBUMES.innerHTML = "Cargando álbumes del usuario...";
